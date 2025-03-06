@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vis & Society Assignment 2</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<header>
+		<h1>
+			<small>Assignment 2</small>
+			Exploratory Data Analysis
+		</h1>
+
+		<p>
+			<strong>Jazzlynn Derrick</strong> — <em>jazzlynn@mit.edu</em>
+		</p>
+	</header>
+	<main>
+		<section>
+			<h2>Subtheme: Speculation</h2>
+
+			<h3>Data Sources</h3>
+			<ol>
+				<li><u>Change over time in corporate ownership and occupancy by Boston neighborhood (2004-2024)</u><br>
+					Uses Boston’s property assessment data from 2004-2024 to source property ownership data. Also includes Census block group population and demographic data from 2020 aggregated at by neighborhood using the City of Boston’s neighborhood boundaries. Corporate owners in this dataset are identified by owner names that include markers like “LLC”, “Corp”, “Trust”, etc. which may not include all corporate owned properties, and may mistakenly include some non-corporate entities.
+                </li>
+                <br>
+				<li><u>Boston Neighborhood Boundaries approximated by 2020 Census block groups shapefile</u><br>
+					The initial corporate ownership data package included a list of zip codes corresponding to neighborhoods in Boston that had a large number of factual errors. To address this issue I downloaded the geospatial data that corresponded exactly with the City of Boston’s neighborhood boundaries approximated by 2020 Census block groups in order to create maps with corporate ownership data.
+                </li>
+			</ol>
+
+			<h3>Overall Analysis Questions</h3>
+			<ol>
+				<li><b>How have corporate property ownership rates changed over time across Boston neighborhoods?</b>
+                    <ul>
+                        <li>Motivation: According to the MAPC <a href="https://homesforprofit.mapc.org/report">Homes for Profit report</a>, 21% of homes sold between 2004 and 2018 were purchased by investors. I’m interested to see if any neighborhoods in Boston might be more significantly impacted than others and whether that has changed over time, particularly in the wake of the 2009 housing crash.</li>
+                    </ul>
+                </li>
+                <br>
+				<li><b>Are there higher rates of corporate ownership in neighborhoods with high populations of BIPOC residents?</b>
+                    <ul>
+                        <li>Motivation: The <a href="https://homesforprofit.mapc.org/report">Homes for Profit report</a> found that the MAPC housing submarket with the largest share of BIPOC residents had the highest rate of investor purchases, it would be useful to know whether there is a similar situation on the local level in Boston with corporate ownership.</li>
+                    </ul>
+                </li>
+                <br>
+				<li><b>Do higher rates of corporate ownership correspond to higher vacancy rates?</b>
+                    <ul>
+                        <li>Motivation: I’m interested in the potential for corporate ownership to distort the housing market—while Boston has some of the lowest vacancy rates in the nation, if there are meaningfully higher vacancy rates in areas with high rates of corporate ownership, that might suggest a fairly direct link between corporate ownership and distorted the pricing market for rental housing (though more data would be needed to draw that conclusion).</li>
+                    </ul>
+                </li>
+                <br>
+				
+			</ol>
+		</section>
+
+		<section>
+			<h2>Discoveries & Insights</h2>
+
+			<p>
+				To begin, I wanted to get a general sense of how the rate of corporate ownership has changed over time and whether there are any trends or outliers. While the above chart is difficult to gain granular insights from, it does reveal a general upward trend across the city in corporate property ownership in recent years that appears to be picking up speed in the last five years. It also shows notable spikes in corporate ownership in the Seaport neighborhood that far outpaces other neighborhoods in 2010 and 2022 which is consistent with the City of Boston’s urban policies which encouraged new and large developments in that neighborhood during that time period.
+			</p>
+
+			<figure>
+				<div class='tableauPlaceholder' id='viz1741219686484' style='position: relative'><noscript><a href='#'><img alt='Change in Corporate Property Ownership by Boston Neighborhood ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston&#47;Corp_YoY_line&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='A2_Corporate-Ownership-Boston&#47;Corp_YoY_line' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston&#47;Corp_YoY_line&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1741219686484');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+				<figcaption>
+				Initial Exploration: Change in Corporate Property Ownership Over Time
+				</figcaption>
+			</figure>
+			<br>
+			
+
+			<h3>1. Change Over Time</h3>
+
+			<p>
+				To get a more detailed look at the rate of corporate ownership over time, I created this interactive chart, which makes comparison across neighborhoods in specific years easier. Here you can see more clearly how the corporate ownership rate across neighborhoods remained relatively low, or even declined slightly year-over-year, until 2020, when a sustained spike in corporate ownership rates set in. 
+			</p>
+
+			<figure>
+				<div class='tableauPlaceholder' id='viz1741219924281' style='position: relative'><noscript><a href='#'><img alt='Corporate Ownership Rate by Boston Neighborhood ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston&#47;Corp_YoY_bar&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='A2_Corporate-Ownership-Boston&#47;Corp_YoY_bar' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston&#47;Corp_YoY_bar&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1741219924281');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+				<figcaption>
+				Closer Look: Corporate Ownership Rate Over Time
+				</figcaption>
+			</figure>
+
+			<p>
+				To get back to my initial question about how corporate property ownership has changed over time, I narrowed down the view to the rates in 2004 and 2024. This barbell chart gives a good summary view of the overall change in corporate property ownership over this 20 year period, revealing which neighborhoods are seeing the largest change relative to historical rates and compared to other neighborhoods. 
+			</p>
+			<p>
+				Here you can see that Seaport, Fenway, East Boston, Longwood, Charlestown, and Beacon Hill saw the largest increase in corporate property ownership between 2004 and 2024 with an increase of 25% or more.  Interestingly, while these neighborhoods have some of the highest rates of corporate property ownership today, Chinatown and Allston saw smaller change over time but still rank in the top 10 neighborhoods for corporate property ownership with all at or above 30%. That’s because these neighborhoods started with higher rates of corporate ownership in 2004. This may be related to the history of urban renewal and highway development in Chinatown and Harvard University’s large scale land holdings and plans to redevelop land in Allston, making way for corporate investment earlier compared to other neighborhoods.
+			</p>
+
+			<figure>
+				<div class='tableauPlaceholder' id='viz1741220198653' style='position: relative'><noscript><a href='#'><img alt='2004 vs. 2024: Corporate Property Ownership by Boston Neighborhood ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston&#47;Corp_YoY_dumbell&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='A2_Corporate-Ownership-Boston&#47;Corp_YoY_dumbell' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston&#47;Corp_YoY_dumbell&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1741220198653');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+				<figcaption>
+				Big Picture: 20 Year Change in Corporate Property Ownership
+				</figcaption>
+			</figure>
+			<br>
+
+			<h3>2. BIPOC Population</h3>
+
+			<p>
+				Next, I explored my question about whether corporate ownership rates are higher in neighborhoods with higher BIPOC populations. This map shows the rate of corporate property ownership in various neighborhoods across Boston in 2020, the year for which Census demographic data is available.
+			</p>
+
+			<figure>
+				<div class='tableauPlaceholder' id='viz1741220360154' style='position: relative'><noscript><a href='#'><img alt='Corporate Property Ownership by Neighborhood (2020) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston&#47;BIPOC_corp_map3&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='A2_Corporate-Ownership-Boston&#47;BIPOC_corp_map3' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston&#47;BIPOC_corp_map3&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1741220360154');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+				<figcaption>
+				Map: Corporate Property Ownership in 2020
+				</figcaption>
+			</figure>
+
+			<p>
+				Bringing in the 2020 Census demographic data for each neighborhood, I demonstrate the BIPOC population in each neighborhood here as defined by the percentage of the neighborhood population with a race that is not white. This includes the population reporting any of the following race categories in the Census: Asian American and Pacific Islander, American Indian or Alaska Native, Black or African American, two or more races, and those identifying as ‘other’ races. This visualization of BIPOC populations does not include individuals identifying as Hispanic/Latino/a/x ethnicity as the Census race categories are not mutually exclusive with the ethnicity categories. In order to not loose insight into the presence of Hispanic/Latino/a/x communities in these neighborhoods, I have prepared a similar map demonstrating the presence of this population as well.
+			</p>
+
+			<figure>
+				<div class='tableauPlaceholder' id='viz1741220477922' style='position: relative'><noscript><a href='#'><img alt='Corporate Property Ownership and BIPOC Population by Neighborhood (2020) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston&#47;BIPOC_corp_map2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='A2_Corporate-Ownership-Boston&#47;BIPOC_corp_map2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston&#47;BIPOC_corp_map2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1741220477922');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+				<figcaption>
+				Map: Corporate Property Ownership Compared to BIPOC Population in 2020
+				</figcaption>
+			</figure>
+
+			<p>
+				Here you can see some notable differences between the concentration of the Hispanic/Latinx populations and BIPOC populations in neighborhoods like East Boston, Chinatown, Allston, and Fenway.
+			</p>
+
+			<figure>
+				<div class='tableauPlaceholder' id='viz1741220597563' style='position: relative'><noscript><a href='#'><img alt='Corporate Property Ownership and Hispanic&#47;Latinx Population by Neighborhood (2020) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston&#47;Hisp_corp_map&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='A2_Corporate-Ownership-Boston&#47;Hisp_corp_map' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston&#47;Hisp_corp_map&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1741220597563');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+				<figcaption>
+				Map: Corporate Property Ownership Compared to Hispanic/Latinx Population in 2020
+				</figcaption>
+			</figure>
+	
+			<p>
+				To contextualize these differences in more direct comparison, I also prepared a bubble chart that demonstrates neighborhoods with high concentrations of BIPOC residents and corporate owners. As you can see, Chinatown and Roxbury have the highest proportion of both.
+			</p>
+
+			<figure>
+				<div class='tableauPlaceholder' id='viz1741223018727' style='position: relative'><noscript><a href='#'><img alt='Corporate Property Ownership and BIPOC Population by Boston Neighborhood (2020) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston-2&#47;BIPOC_corp_bubble&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='A2_Corporate-Ownership-Boston-2&#47;BIPOC_corp_bubble' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston-2&#47;BIPOC_corp_bubble&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1741223018727');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+				<figcaption>
+				Bubble Chart: Boston Neighborhoods by Corporate Ownership Rate & BIPOC Population
+				</figcaption>
+			</figure>
+			<br>
+
+			<h3>3. Vacancy Rates</h3>
+			
+			<p>
+				Moving on to exploring vacancy rates, I found that the dataset only contained the same housing vacancy values for every year 2004-2024. Given the extremely low likelihood that there has been zero change in the vacancy rate in any neighborhood in Boston in the last 20 years, I decided to move away from analyzing vacancy over time. 
+			</p>
+
+			<figure>
+				<div class='tableauPlaceholder' id='viz1741223742505' style='position: relative'><noscript><a href='#'><img alt='Change in Vacancy Rate by Boston Neighborhood ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston-2&#47;YoY_Corp_vac&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='A2_Corporate-Ownership-Boston-2&#47;YoY_Corp_vac' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston-2&#47;YoY_Corp_vac&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1741223742505');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+				<figcaption>
+				Missing or Erroneous Data: Improbable Vacancy Rates "Over Time"
+				</figcaption>
+			</figure>
+
+			<p>
+				After taking a closer look at the data source, I was able to determine that the vacancy data that was available was for the year 2020, which I have visualized in a dot plot with a polynomial trend line and confidence bands here. Here again it seems that there is likely some relationship between higher corporate property ownership rates and higher vacancy rates across neighborhoods in Boston. 
+			</p>
+
+			<figure>
+				<div class='tableauPlaceholder' id='viz1741223930660' style='position: relative'><noscript><a href='#'><img alt='Corporate Property Ownership and Vacancy Rate by Boston Neighborhood (2020) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston-2&#47;Corp_Vac_bubble&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='A2_Corporate-Ownership-Boston-2&#47;Corp_Vac_bubble' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;A2&#47;A2_Corporate-Ownership-Boston-2&#47;Corp_Vac_bubble&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1741223930660');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+				<figcaption>
+				Dot Plot: Vacancy Rates and Corporate Ownership by Neighborhood in 2020
+				</figcaption>
+			</figure>
+			<br>
+
+		</section>
+
+		<section>
+			<h2>Summary</h2>
+
+			<p>Overall, corporate ownership of housing is rising faster in Boston in the last five years than it has in the past, reaching rates as high as 38% in some neighborhoods. 2020 stands out as a turning point in the recent uptick in corporate ownership, and more should be done to investigate what factors may be motivating this shift.</p>
+
+			<p>
+				The rise in corporate ownership has not been felt evenly across the city, with neighborhoods like the Seaport, East Boston, Fenway, Charlestown, Beacon Hill, and Longwood seeing the largest growth between 2004 and 2024.
+			</p>
+
+			<p>
+				Corporate ownership is moderately concentrated near Downtown Boston but also appears to be correlated with concentrated institutional presence in neighborhoods such as Harvard in Allston, Boston University in Fenway, and the Longwood Medical Center in Longwood. It would be worth investigating further how controlling for institutional presence would influence the resulting rate of corporate ownership.
+			</p>
+
+			<p>
+				There may be a moderate connection between the corporate ownership rate in 2020 and the presence of BIPOC and Hispanic/Latinx populations in neighborhoods, though there are strong counter examples of neighborhoods with high BIPOC populations and relatively lower corporate ownership as well as neighborhoods with low BIPOC populations and relatively high corporate ownership rates. More research could reveal if there are particular conditions across these neighborhoods that have led to these outcomes, such as differential zoning practices or histories of urban renewal/redevelopment, which appear to be a commonality between Chinatown and Roxbury which are the neighborhoods with the highest concentration of both corporate-owned properties and BIPOC populations.
+			</p>
+
+			<p>
+				There appears to be a relationship between higher rates of corporate property ownership and vacancy rates, which may suggest that corporate ownership is distorting the housing market in Boston neighborhoods. A comparison of this data with market data about rental or home prices would be useful for understanding the true effect.
+			</p>
+		</section>
+	</main>
+</body>
+</html>
